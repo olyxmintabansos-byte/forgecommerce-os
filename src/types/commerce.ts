@@ -74,3 +74,47 @@ export interface B2BQuoteRequest {
   notes: string;
   createdAt: string;
 }
+
+export type CreditRatingGrade = "AAA" | "AA" | "A" | "BBB" | "BB" | "B" | "CCC";
+
+export interface VendorKycProfile {
+  id: string;
+  legalName: string;
+  taxIdNpwp: string;
+  country: string;
+  industryCategory: string;
+  creditGrade: CreditRatingGrade;
+  creditScore: number; // 300 - 850
+  creditLimitIDR: number;
+  utilizedCreditIDR: number;
+  paymentDefaultRiskPercent: number;
+  onTimeDeliveryRate: number; // percentage
+  defectRatePpm: number; // parts per million
+  isAuditedEsg: boolean;
+  isIso9001Certified: boolean;
+  status: "VERIFIED" | "UNDER_REVIEW" | "SUSPENDED";
+}
+
+export interface B2BInvoice {
+  id: string;
+  invoiceNumber: string;
+  poNumber: string;
+  buyerCompanyName: string;
+  buyerNpwp: string;
+  buyerAddress: string;
+  sellerCompanyName: string;
+  sellerNpwp: string;
+  sellerAddress: string;
+  itemDescription: string;
+  quantity: number;
+  unit: string;
+  unitPriceIDR: number;
+  subtotalIDR: number;
+  vat11IDR: number;
+  totalAmountIDR: number;
+  paymentTerms: PaymentTerms;
+  dueDate: string;
+  issuedDate: string;
+  status: "PAID" | "PENDING_PAYMENT" | "OVERDUE";
+  authorizedSignatory: string;
+}
